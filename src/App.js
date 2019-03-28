@@ -50,6 +50,10 @@ export default class App extends Component {
     this.setState({people:tmpP,clicked:'deletePerson'});
   };
 
+  cancel =()=>{
+    this.setState({clicked:'cancel'});
+  };
+
   render() {
     let currentView=<div><h2>Persons List</h2><PersonList people={this.state.people} updatePerson={this.updatePerson}/>
     <button name='addPersonButton' onClick={this.handleClick}>Add Person</button></div>;
@@ -58,7 +62,7 @@ export default class App extends Component {
     }
 
     if(this.state.clicked==='updatePerson'){
-      currentView=<PersonEdit person={this.state.toUpdatePerson} savePerson={this.savePerson} deletePerson={this.deletePerson}/>;
+      currentView=<PersonEdit person={this.state.toUpdatePerson} savePerson={this.savePerson} deletePerson={this.deletePerson} cancel={this.cancel}/>;
     }
     if(this.state.clicked==='savePerson'){
       currentView=<div><h2>Persons List</h2><PersonList people={this.state.people} updatePerson={this.updatePerson}/>
@@ -69,6 +73,10 @@ export default class App extends Component {
       <button name='addPersonButton' onClick={this.handleClick}>Add Person</button></div>;
     }
     if(this.state.clicked==='add'){
+      currentView=<div><h2>Persons List</h2><PersonList people={this.state.people} updatePerson={this.updatePerson}/>
+      <button name='addPersonButton' onClick={this.handleClick}>Add Person</button></div>;
+    }
+    if(this.state.clicked==='cancel'){
       currentView=<div><h2>Persons List</h2><PersonList people={this.state.people} updatePerson={this.updatePerson}/>
       <button name='addPersonButton' onClick={this.handleClick}>Add Person</button></div>;
     }

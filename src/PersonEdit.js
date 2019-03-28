@@ -26,7 +26,8 @@ render(){
             <label htmlFor='lastName'>Last Name:</label>
             <input type='text' id='lastName' onChange={this.handleChange} value={this.state.lastName} name='lastName' required></input><br/><br/>
             <button type="submit" name='saveButton'>Save</button> &nbsp; 
-            <button type="button" name='deleteButton' onClick={()=>{this.props.deletePerson(this.state)}}>Delete</button>
+            <button type="button" name='deleteButton' onClick={()=>{this.props.deletePerson(this.state)}}>Delete</button> &nbsp;
+            <button type="button" name='cancelButton' onClick={()=>{this.props.cancel()}}>Cancel</button>
         </form>
         
         </div>
