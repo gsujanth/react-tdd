@@ -14,18 +14,21 @@ export default class AddPerson extends Component{
     }
 
     handleChange = e => {
-		this.setState({ [e.target.name]: e.target.value });
+        this.setState({ [e.target.name]: e.target.value });
+        console.log(this.state);
     };
 
     render(){
         return(
             <div>
                 <h2>Creating new person...</h2>
-                <label htmlFor='firstName'>First Name:</label>
-                <input type='text' id='firstName' onChange={this.handleChange} name='firstName'></input><br/><br/>
-                <label htmlFor='lastName'>Last Name:</label>
-                <input type='text' id='lastName' onChange={this.handleChange} name='lastName'></input><br/><br/>
-                <button name='addButton' onClick={()=>this.props.addPerson(this.state)}>Add</button>
+                <form onSubmit={()=>this.props.addPerson(this.state)}>
+                    <label htmlFor='firstName'>First Name:</label>
+                    <input type='text' id='firstName' onChange={this.handleChange} name='firstName' required></input><br/><br/>
+                    <label htmlFor='lastName'>Last Name:</label>
+                    <input type='text' id='lastName' onChange={this.handleChange} name='lastName' required></input><br/><br/>
+                    <button type ="submit" name='addButton'>Add</button>
+                </form>
             </div>
         );
     }

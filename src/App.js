@@ -13,9 +13,7 @@ export default class App extends Component {
         { firstName: 'Alanzo', lastName: 'Church', id:'fgueg' },
         { firstName: 'Grace', lastName: 'Hopper', id:'3t6' }
       ],
-      clicked:false,
-      updatePersonClicked:false,
-      savePersonClicked:false,
+      clicked:'',
       toUpdatePerson:{}
     };
     this.handleClick=this.handleClick.bind(this);
@@ -23,42 +21,57 @@ export default class App extends Component {
 
   handleClick=()=>{
     this.setState({
-      clicked:true
+      clicked:'addPerson'
     });
   }
 
   addPerson = (person) => {
 		const people = [...this.state.people];
 		people.push(person);
-    this.setState({ people, clicked:false });
+    this.setState({ people,clicked:'addedPerson' });
   };
 
   updatePerson =(person)=>{
-      this.setState({updatePersonClicked:true,toUpdatePerson:person});
+      this.setState({clicked:'updatePerson',toUpdatePerson:person});
   };
 
   savePerson =(person)=>{
     let tmpPeople = [...this.state.people];
     let tmpP= tmpPeople.filter((person1)=>person1.id !== person.id);
     tmpP.push(person);
-    this.setState({people:tmpP,savePersonClicked:true});
+    this.setState({people:tmpP,clicked:'savePerson'});
+  };
+
+  deletePerson =(person)=>{
+    let tmpPeople = [...this.state.people];
+    let tmpP= tmpPeople.filter((person1)=>person1.id !== person.id);
+    this.setState({people:tmpP,clicked:'deletePerson'});
   };
 
   render() {
     let currentView=<div><h2>Persons List</h2><PersonList people={this.state.people} updatePerson={this.updatePerson}/>
     <button name='addPersonButton' onClick={this.handleClick}>Add Person</button></div>;
-    if(this.state.clicked){
+    if(this.state.clicked==='addPerson'){
       currentView=<AddPerson addPerson={this.addPerson}/>;
     }
-    if(this.state.updatePersonClicked){
-      currentView=<PersonEdit person={this.state.toUpdatePerson} savePerson={this.savePerson}/>;
+
+    if(this.state.clicked==='updatePerson'){
+      currentView=<PersonEdit person={this.state.toUpdatePerson} savePerson={this.savePerson} deletePerson={this.deletePerson}/>;
     }
-    if(this.state.savePersonClicked){
+    if(this.state.clicked==='savePerson'){
+      currentView=<div><h2>Persons List</h2><PersonList people={this.state.people} updatePerson={this.updatePerson}/>
+      <button name='addPersonButton' onClick={this.handleClick}>Add Person</button></div>;
+    }
+    if(this.state.clicked==='deletePerson'){
+      currentView=<div><h2>Persons List</h2><PersonList people={this.state.people} updatePerson={this.updatePerson}/>
+      <button name='addPersonButton' onClick={this.handleClick}>Add Person</button></div>;
+    }
+    if(this.state.clicked==='addedPerson'){
       currentView=<div><h2>Persons List</h2><PersonList people={this.state.people} updatePerson={this.updatePerson}/>
       <button name='addPersonButton' onClick={this.handleClick}>Add Person</button></div>;
     }
     return (
-     <div className="App">
+     <div className="App" id="app123">
          {currentView}
       </div>
     );
