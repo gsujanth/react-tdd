@@ -9,6 +9,7 @@ export default class PersonEdit extends Component{
             lastName: this.props.person.lastName ,
             id:this.props.person.id
         };
+        this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange = (e) => {

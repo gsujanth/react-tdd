@@ -3,13 +3,15 @@ import PersonList from './PersonList';
 import AddPerson from './AddPerson';
 import PersonEdit from './PersonEdit';
 
+const uuid = require('uuid');
+
 export default class App extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
       people: [
-        { firstName: 'Alan', lastName: 'Turing' ,id:'hgeufh'},
+        { firstName: 'Alan', lastName: 'Turing' ,id:'dtdtg'},
         { firstName: 'Alanzo', lastName: 'Church', id:'fgueg' },
         { firstName: 'Grace', lastName: 'Hopper', id:'3t6' }
       ],
@@ -28,7 +30,7 @@ export default class App extends Component {
   addPerson = (person) => {
 		const people = [...this.state.people];
 		people.push(person);
-    this.setState({ people,clicked:'addedPerson' });
+    this.setState({ people,clicked:'add' });
   };
 
   updatePerson =(person)=>{
@@ -66,7 +68,7 @@ export default class App extends Component {
       currentView=<div><h2>Persons List</h2><PersonList people={this.state.people} updatePerson={this.updatePerson}/>
       <button name='addPersonButton' onClick={this.handleClick}>Add Person</button></div>;
     }
-    if(this.state.clicked==='addedPerson'){
+    if(this.state.clicked==='add'){
       currentView=<div><h2>Persons List</h2><PersonList people={this.state.people} updatePerson={this.updatePerson}/>
       <button name='addPersonButton' onClick={this.handleClick}>Add Person</button></div>;
     }

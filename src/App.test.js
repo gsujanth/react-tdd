@@ -1,10 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import App from './App';
 import AddPerson from './AddPerson';
 import PersonEdit from './PersonEdit';
-import PersonList from './PersonList';
-import {shallow,mount} from 'enzyme';
+import {shallow} from 'enzyme';
 
 describe('testing App component',()=>{
     //beforeEach(() => wrapper = shallow(<App />));
@@ -15,7 +13,7 @@ describe('testing App component',()=>{
 
     it('to test presence of people',()=>{
         let tempPeople=[
-            { firstName: 'Alan', lastName: 'Turing' ,id:'hgeufh'},
+            { firstName: 'Alan', lastName: 'Turing' ,id:'dtdtg'},
             { firstName: 'Alanzo', lastName: 'Church', id:'fgueg' },
             { firstName: 'Grace', lastName: 'Hopper', id:'3t6' }
           ];
